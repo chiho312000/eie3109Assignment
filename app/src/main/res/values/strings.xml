@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">eie3109Assignment</string>
+    <string name="imageView1Des">imageView1</string>
+    <string name="imageView2Des">imageView2</string>
+    <string name="button1Text">BIGGER</string>
+    <string name="button2Text">SMALLER</string>
+    <string name="button3Text">BACK</string>
 </resources>
