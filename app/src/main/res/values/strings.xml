@@ -1,8 +1,19 @@
 <resources>
     <string name="app_name">eie3109Assignment</string>
-    <string name="imageView1Des">imageView1</string>
-    <string name="imageView2Des">imageView2</string>
-    <string name="button1Text">BIGGER</string>
-    <string name="button2Text">SMALLER</string>
-    <string name="button3Text">BACK</string>
+    <!-- Main -->
+
+    <string name="btnPart1Text">Part1</string>
+    <string name="btnPart2Text">Part2</string>
+    <string name="btnPart3Text">Part3</string>
+
+    <!-- Part1 -->
+    <string name="part1Img1Des">imageToChange</string>
+    <string name="part1img2Des">imageOriginal</string>
+    <string name="part1BtnBiggerText">BIGGER</string>
+    <string name="part1BtnSmallerText">SMALLER</string>
+    <string name="part1BtnBackText">BACK</string>
+
+    <!-- Part2 -->
+
+    <!-- Part3 -->
 </resources>
