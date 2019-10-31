@@ -11,41 +11,32 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity
 {
     private final int PART1 = 1, PART2 = 2, PART3 = 3;
-    private Button btnPart1, btnPart2, btnPart3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnPart1 = findViewById(R.id.btnPart1);
-        btnPart2 = findViewById(R.id.btnPart2);
-        btnPart3 = findViewById(R.id.btnPart3);
 
-        btnPart1.setOnClickListener(new Button.OnClickListener()
+        findViewById(R.id.btnPart1).setOnClickListener(new Button.OnClickListener()
         {
             @Override
             public void onClick(View v)
-            {
-                pushToPart(PART1);
+            { pushToPart(PART1);
             }
         });
-
-        btnPart2.setOnClickListener(new Button.OnClickListener()
+        findViewById(R.id.btnPart2).setOnClickListener(new Button.OnClickListener()
         {
             @Override
             public void onClick(View v)
-            {
-                pushToPart(PART2);
+            { pushToPart(PART2);
             }
         });
-
-        btnPart3.setOnClickListener(new Button.OnClickListener()
+        findViewById(R.id.btnPart3).setOnClickListener(new Button.OnClickListener()
         {
             @Override
             public void onClick(View v)
-            {
-                pushToPart(PART3);
+            { pushToPart(PART3);
             }
         });
 
@@ -60,7 +51,11 @@ public class MainActivity extends AppCompatActivity
                 newIntent = new Intent(MainActivity.this, Part1Activity.class);
                 break;
             case PART2:
+                newIntent = new Intent(MainActivity.this, Part2Activity.class);
+                break;
             case PART3:
+                newIntent = new Intent(MainActivity.this, Part3Activity.class);
+                break;
             default:
                 return;
         }

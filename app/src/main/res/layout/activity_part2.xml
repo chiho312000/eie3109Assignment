@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Part2Activity">
+
+    <TextView
+        android:id="@+id/resultView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn0Text" />
+
+    <Button
+        android:id="@+id/part2Btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn1Text" />
+
+    <Button
+        android:id="@+id/part2Btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn2Text" />
+
+    <Button
+        android:id="@+id/part2Btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn3Text" />
+
+    <Button
+        android:id="@+id/part2Btn4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn4Text" />
+
+    <Button
+        android:id="@+id/part2Btn5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn5Text" />
+
+    <Button
+        android:id="@+id/part2Btn6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn6Text" />
+
+    <Button
+        android:id="@+id/part2Btn7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn7Text" />
+
+    <Button
+        android:id="@+id/part2Btn8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn8Text" />
+
+    <Button
+        android:id="@+id/part2Btn9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn9Text" />
+
+    <Button
+        android:id="@+id/part2Btn0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2Btn0Text" />
+
+    <Button
+        android:id="@+id/part2BtnE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnEText" />
+
+    <Button
+        android:id="@+id/part2BtnPi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnPiText" />
+
+    <Button
+        android:id="@+id/part2BtnEqual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnEqualText" />
+
+    <Button
+        android:id="@+id/part2BtnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnAddText" />
+
+    <Button
+        android:id="@+id/part2BtnSubtract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnSubtractText" />
+
+    <Button
+        android:id="@+id/part2BtnMultiply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnMultiplyText" />
+
+    <Button
+        android:id="@+id/part2BtnDivide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnDivideText" />
+
+    <Button
+        android:id="@+id/part2BtnSin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnSinText" />
+
+    <Button
+        android:id="@+id/part2BtnCos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part2BtnCosText" />
+</androidx.constraintlayout.widget.ConstraintLayout>

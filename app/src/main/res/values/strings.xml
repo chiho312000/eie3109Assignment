@@ -15,5 +15,25 @@
 
     <!-- Part2 -->
 
+    <string name="part2Btn1Text">1</string>
+    <string name="part2Btn2Text">2</string>
+    <string name="part2Btn3Text">3</string>
+    <string name="part2Btn4Text">4</string>
+    <string name="part2Btn5Text">5</string>
+    <string name="part2Btn6Text">6</string>
+    <string name="part2Btn7Text">7</string>
+    <string name="part2Btn8Text">8</string>
+    <string name="part2Btn9Text">9</string>
+    <string name="part2Btn0Text">0</string>
+    <string name="part2BtnPiText">π</string>
+    <string name="part2BtnEText">e</string>
+    <string name="part2BtnEqualText">=</string>
+    <string name="part2BtnAddText">+</string>
+    <string name="part2BtnSubtractText">-</string>
+    <string name="part2BtnMultiplyText">*</string>
+    <string name="part2BtnDivideText">/</string>
+    <string name="part2BtnSinText">sin</string>
+    <string name="part2BtnCosText">cos</string>
+
     <!-- Part3 -->
 </resources>
