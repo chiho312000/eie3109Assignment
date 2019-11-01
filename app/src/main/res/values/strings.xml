@@ -25,7 +25,7 @@
     <string name="part2Btn8Text">8</string>
     <string name="part2Btn9Text">9</string>
     <string name="part2Btn0Text">0</string>
-    <string name="part2BtnPiText">π</string>
+    <string name="part2BtnPiText">\u03C0 </string>
     <string name="part2BtnEText">e</string>
     <string name="part2BtnEqualText">=</string>
     <string name="part2BtnAddText">+</string>

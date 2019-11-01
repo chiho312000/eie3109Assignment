@@ -6,123 +6,208 @@
     android:layout_height="match_parent"
     tools:context=".Part2Activity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/part2ResultViewStartGuideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.125"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/part2ResultViewEndGuideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.875"/>
     <TextView
-        android:id="@+id/resultView"
-        android:layout_width="wrap_content"
+        android:id="@+id/part2ResultView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/topMargin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/part2ResultViewStartGuideline"
+        app:layout_constraintEnd_toEndOf="@id/part2ResultViewEndGuideline"
+        android:background="@drawable/text_view_border"
+        android:textSize="@dimen/part2ResultTextSize"
         android:text="@string/part2Btn0Text" />
 
     <Button
         android:id="@+id/part2Btn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginEnd="@dimen/part2BtnEndMargin"
+        app:layout_constraintTop_toTopOf="@id/part2Btn2"
+        app:layout_constraintEnd_toStartOf="@id/part2Btn2"
         android:text="@string/part2Btn1Text" />
 
     <Button
         android:id="@+id/part2Btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginTop="@dimen/topMargin"
+        app:layout_constraintTop_toBottomOf="@id/part2Btn5"
+        app:layout_constraintEnd_toEndOf="@id/part2Btn8"
         android:text="@string/part2Btn2Text" />
 
     <Button
         android:id="@+id/part2Btn3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginStart="@dimen/part2BtnStartMargin"
+        app:layout_constraintTop_toTopOf="@id/part2Btn2"
+        app:layout_constraintStart_toEndOf="@id/part2Btn2"
         android:text="@string/part2Btn3Text" />
 
     <Button
         android:id="@+id/part2Btn4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginEnd="@dimen/part2BtnEndMargin"
+        app:layout_constraintTop_toTopOf="@id/part2Btn5"
+        app:layout_constraintEnd_toStartOf="@id/part2Btn5"
         android:text="@string/part2Btn4Text" />
 
     <Button
         android:id="@+id/part2Btn5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginTop="@dimen/topMargin"
+        app:layout_constraintTop_toBottomOf="@id/part2Btn7"
+        app:layout_constraintStart_toStartOf="@id/part2Btn8"
         android:text="@string/part2Btn5Text" />
 
     <Button
         android:id="@+id/part2Btn6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginStart="@dimen/part2BtnStartMargin"
+        app:layout_constraintTop_toTopOf="@id/part2Btn5"
+        app:layout_constraintStart_toEndOf="@id/part2Btn5"
         android:text="@string/part2Btn6Text" />
 
     <Button
         android:id="@+id/part2Btn7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginEnd="@dimen/part2BtnEndMargin"
+        app:layout_constraintTop_toTopOf="@id/part2Btn8"
+        app:layout_constraintEnd_toStartOf="@id/part2Btn8"
+        app:layout_constraintStart_toStartOf="@id/part2ResultView"
         android:text="@string/part2Btn7Text" />
 
     <Button
         android:id="@+id/part2Btn8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginTop="@dimen/topMargin"
+        app:layout_constraintTop_toBottomOf="@id/part2BtnE"
+        app:layout_constraintStart_toEndOf="@id/part2Btn7"
+        app:layout_constraintEnd_toStartOf="@id/part2Btn9"
         android:text="@string/part2Btn8Text" />
 
     <Button
         android:id="@+id/part2Btn9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginStart="@dimen/part2BtnStartMargin"
+        app:layout_constraintTop_toTopOf="@id/part2Btn8"
+        app:layout_constraintStart_toEndOf="@id/part2Btn8"
         android:text="@string/part2Btn9Text" />
 
     <Button
         android:id="@+id/part2Btn0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginTop="@dimen/topMargin"
+        app:layout_constraintTop_toBottomOf="@id/part2Btn2"
+        app:layout_constraintLeft_toLeftOf="@id/part2Btn8"
         android:text="@string/part2Btn0Text" />
 
     <Button
         android:id="@+id/part2BtnE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginTop="@dimen/topMargin"
+        app:layout_constraintTop_toBottomOf="@id/part2BtnSin"
+        app:layout_constraintLeft_toLeftOf="@id/part2Btn8"
         android:text="@string/part2BtnEText" />
 
     <Button
         android:id="@+id/part2BtnPi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/part2BtnSize"
+        android:layout_height="@dimen/part2BtnSize"
+        android:layout_marginEnd="@dimen/part2BtnEndMargin"
+        app:layout_constraintTop_toTopOf="@id/part2BtnE"
+        app:layout_constraintEnd_toStartOf="@id/part2BtnE"
         android:text="@string/part2BtnPiText" />
 
     <Button
         android:id="@+id/part2BtnEqual"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@id/part2ResultView"
+        app:layout_constraintStart_toEndOf="@id/part2Btn9"
+        app:layout_constraintTop_toTopOf="@id/part2Btn0"
+        app:layout_constraintBottom_toBottomOf="@id/part2Btn0"
         android:text="@string/part2BtnEqualText" />
 
     <Button
         android:id="@+id/part2BtnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/part2BtnE"
+        app:layout_constraintBottom_toBottomOf="@id/part2BtnE"
+        app:layout_constraintStart_toStartOf="@id/part2BtnEqual"
+        app:layout_constraintEnd_toEndOf="@id/part2BtnEqual"
         android:text="@string/part2BtnAddText" />
 
     <Button
         android:id="@+id/part2BtnSubtract"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/part2Btn8"
+        app:layout_constraintBottom_toBottomOf="@id/part2Btn8"
+        app:layout_constraintStart_toStartOf="@id/part2BtnEqual"
+        app:layout_constraintEnd_toEndOf="@id/part2BtnEqual"
         android:text="@string/part2BtnSubtractText" />
 
     <Button
         android:id="@+id/part2BtnMultiply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/part2Btn5"
+        app:layout_constraintBottom_toBottomOf="@id/part2Btn5"
+        app:layout_constraintStart_toStartOf="@id/part2BtnEqual"
+        app:layout_constraintEnd_toEndOf="@id/part2BtnEqual"
         android:text="@string/part2BtnMultiplyText" />
 
     <Button
         android:id="@+id/part2BtnDivide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/part2Btn2"
+        app:layout_constraintBottom_toBottomOf="@id/part2Btn2"
+        app:layout_constraintStart_toStartOf="@id/part2BtnEqual"
+        app:layout_constraintEnd_toEndOf="@id/part2BtnEqual"
         android:text="@string/part2BtnDivideText" />
 
     <Button
         android:id="@+id/part2BtnSin"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/topMargin"
+        app:layout_constraintTop_toBottomOf="@id/part2ResultView"
+        app:layout_constraintBottom_toTopOf="@id/part2BtnE"
+        app:layout_constraintEnd_toEndOf="@id/part2Btn7"
+        app:layout_constraintStart_toStartOf="@id/part2Btn7"
         android:text="@string/part2BtnSinText" />
 
     <Button
         android:id="@+id/part2BtnCos"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/part2BtnSin"
+        app:layout_constraintBottom_toBottomOf="@id/part2BtnSin"
+        app:layout_constraintStart_toStartOf="@id/part2Btn8"
+        app:layout_constraintEnd_toEndOf="@id/part2Btn8"
         android:text="@string/part2BtnCosText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

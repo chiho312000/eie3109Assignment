@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="topMargin">10dp</dimen>
+    <dimen name="part2BtnSize">60dp</dimen>
+    <dimen name="part2BtnStartMargin">10dp</dimen>
+    <dimen name="part2BtnEndMargin">10dp</dimen>
+    <dimen name="part2ResultTextSize">32sp</dimen>
+</resources>
