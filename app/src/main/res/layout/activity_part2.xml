@@ -12,12 +12,14 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.125"/>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/part2ResultViewEndGuideline"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.875"/>
+
     <TextView
         android:id="@+id/part2ResultView"
         android:layout_width="0dp"
@@ -27,6 +29,10 @@
         app:layout_constraintStart_toStartOf="@id/part2ResultViewStartGuideline"
         app:layout_constraintEnd_toEndOf="@id/part2ResultViewEndGuideline"
         android:background="@drawable/text_view_border"
+        android:textAlignment="textEnd"
+        android:layout_gravity="end"
+        android:ellipsize="start"
+        android:singleLine="true"
         android:textSize="@dimen/part2ResultTextSize"
         android:text="@string/part2Btn0Text" />
 

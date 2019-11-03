@@ -13,4 +13,7 @@ public class CalculatorBrain
     {
         accumulator = operand;
     }
+
+    public void performOperation(String operation)
+    {}
 }
