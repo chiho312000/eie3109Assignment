@@ -14,6 +14,19 @@ public class CalculatorBrain
         accumulator = operand;
     }
 
-    public void performOperation(String operation)
-    {}
+    public void performOperation(String symbol)
+    {
+        switch (symbol)
+        {
+            case "=":
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void performPendingBinaryOperation()
+    {
+
+    }
 }
