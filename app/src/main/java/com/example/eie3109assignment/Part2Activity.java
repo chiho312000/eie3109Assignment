@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.eie3109assignment.models.CalculatorBrain;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,6 +17,7 @@ public class Part2Activity extends AppCompatActivity
     private CalculatorBrain calculatorBrain;
     private TextView monitor;
     private boolean userStillTyping = false;
+    DecimalFormat hashes = new DecimalFormat("#.####");
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,21 +76,8 @@ public class Part2Activity extends AppCompatActivity
         public void onClick(View v)
         {
             String text = ((Button)v).getText().toString();
-
-            switch (text)
-            {
-                case "\u03C0":
-                    monitor.setText(String.format("%02f", Math.PI));
-                    calculatorBrain.setOperand(Math.PI);
-                    break;
-                case "e":
-                    monitor.setText(String.format("%02f", Math.E));
-                    calculatorBrain.setOperand(Math.E);
-                    break;
-                default:
-                    calculatorBrain.performOperation(text);
-                    break;
-            }
+            calculatorBrain.performOperation(text);
+            if (calculatorBrain.getNeedUpdateMonitor()) monitor.setText(hashes.format(calculatorBrain.getResult()));
             userStillTyping = false;
         }
     }
