@@ -33,7 +33,8 @@ public class GameThread extends Thread
                 c = surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder)
                 {
-                    panel.onDraw(c);
+                    panel.updateMovement();
+                    panel.draw(c);
                 }
             }
             finally
@@ -44,5 +45,9 @@ public class GameThread extends Thread
                 }
             }
         }
+    }
+
+    public SurfaceHolder getSurfaceHolder() {
+        return surfaceHolder;
     }
 }
