@@ -12,7 +12,7 @@ public class GraphicObject
     {
         this.bitmap = bitmap;
         this.coordinates = new Coordinates(bitmap);
-        this.movement = new Movement();
+        this.movement = new Movement((int)(Math.random() * 10), (int)(Math.random() * 10));
     }
 
     public Bitmap getGraphic()

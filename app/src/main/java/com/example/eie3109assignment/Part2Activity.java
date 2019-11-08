@@ -30,30 +30,49 @@ public class Part2Activity extends AppCompatActivity
         monitor = findViewById(R.id.part2ResultView);
 
         ArrayList<Button> numBtns = new ArrayList<>(Arrays.asList(
-                (Button)findViewById(R.id.part2Btn1),
-                (Button)findViewById(R.id.part2Btn2),
-                (Button)findViewById(R.id.part2Btn3),
-                (Button)findViewById(R.id.part2Btn4),
-                (Button)findViewById(R.id.part2Btn5),
-                (Button)findViewById(R.id.part2Btn6),
-                (Button)findViewById(R.id.part2Btn7),
-                (Button)findViewById(R.id.part2Btn8),
-                (Button)findViewById(R.id.part2Btn9),
-                (Button)findViewById(R.id.part2Btn0)));
+                (Button) findViewById(R.id.part2Btn1),
+                (Button) findViewById(R.id.part2Btn2),
+                (Button) findViewById(R.id.part2Btn3),
+                (Button) findViewById(R.id.part2Btn4),
+                (Button) findViewById(R.id.part2Btn5),
+                (Button) findViewById(R.id.part2Btn6),
+                (Button) findViewById(R.id.part2Btn7),
+                (Button) findViewById(R.id.part2Btn8),
+                (Button) findViewById(R.id.part2Btn9),
+                (Button) findViewById(R.id.part2Btn0)));
 
         ArrayList<Button> functionBtns = new ArrayList<>(Arrays.asList(
-                (Button)findViewById(R.id.part2BtnE),
-                (Button)findViewById(R.id.part2BtnPi),
-                (Button)findViewById(R.id.part2BtnEqual),
-                (Button)findViewById(R.id.part2BtnAdd),
-                (Button)findViewById(R.id.part2BtnSubtract),
-                (Button)findViewById(R.id.part2BtnMultiply),
-                (Button)findViewById(R.id.part2BtnDivide),
-                (Button)findViewById(R.id.part2BtnSin),
-                (Button)findViewById(R.id.part2BtnCos)));
+                (Button) findViewById(R.id.part2BtnE),
+                (Button) findViewById(R.id.part2BtnPi),
+                (Button) findViewById(R.id.part2BtnEqual),
+                (Button) findViewById(R.id.part2BtnAdd),
+                (Button) findViewById(R.id.part2BtnSubtract),
+                (Button) findViewById(R.id.part2BtnMultiply),
+                (Button) findViewById(R.id.part2BtnDivide),
+                (Button) findViewById(R.id.part2BtnSin),
+                (Button) findViewById(R.id.part2BtnCos)));
 
-        for(Button b : numBtns) { b.setOnClickListener(new NumbersBtnOnClickHandler()); }
-        for(Button b : functionBtns) {b.setOnClickListener(new FunctionBtnOnClickHandler());}
+        for (Button b : numBtns)
+        {
+            b.setOnClickListener(new NumbersBtnOnClickHandler());
+        }
+        for (Button b : functionBtns)
+        {
+            b.setOnClickListener(new FunctionBtnOnClickHandler());
+        }
+
+        Button btnBack = findViewById(R.id.part2BtnBack);
+        if (btnBack != null)
+        {
+            btnBack.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    finish();
+                }
+            });
+        }
     }
 
     public class NumbersBtnOnClickHandler implements Button.OnClickListener

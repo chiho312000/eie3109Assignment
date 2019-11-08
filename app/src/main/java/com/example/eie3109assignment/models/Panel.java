@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -23,6 +24,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
     private GameThread thread;
 
     private ArrayList<GraphicObject> graphics = new ArrayList<>();
+    private ArrayList<Rect> forbiddenAreas = new ArrayList<>();
 
     public Panel(Context context)
     {
@@ -99,10 +101,34 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
 
                 graphic.getCoordinates().setX(x - bmpW / 2);
                 graphic.getCoordinates().setY(y - bmpH / 2);
-                graphics.add(graphic);
+
+                Rect rect = new Rect(x, y,x + bmpW * 2,y + bmpH * 2);
+                if (checkSpaceAvailable(rect))
+                {
+                    graphics.add(graphic);
+                    forbiddenAreas.add(rect);
+                }
             }
             return true;
         }
+    }
+
+    public boolean checkSpaceAvailable(Rect rect)
+    {
+        for (Rect test : forbiddenAreas)
+        {
+            if (rect.top == test.top && rect.bottom == test.bottom && rect.right == test.right && rect.left == test.left) continue;
+
+            if ((rect.top >= test.top && rect.top <= test.bottom && rect.left >= test.left && rect.left <= test.right)
+                || (rect.top >= test.top && rect.top <= test.bottom && rect.right >= test.left && rect.right <= test.right)
+                || (rect.bottom >= test.top && rect.bottom <= test.bottom && rect.left >= test.left && rect.left <= test.right)
+                || (rect.bottom >= test.top && rect.bottom <= test.bottom && rect.right >= test.left && rect.right <= test.right))
+            {
+                Log.v("Panel.java", String.format("rejected %d %d %d %d", rect.top, rect.right, rect.left, rect.bottom));
+                return false;
+            }
+        }
+        return true;
     }
 
     public void updateMovement()
@@ -112,8 +138,10 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
 
         int x, y;
 
-        for (GraphicObject graphic : graphics)
+        for (int i = 0; i < graphics.size(); i++)
         {
+            GraphicObject graphic = graphics.get(i);
+
             coord = graphic.getCoordinates();
             movement = graphic.getMovement();
 

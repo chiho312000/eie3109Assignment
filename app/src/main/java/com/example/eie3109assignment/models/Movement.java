@@ -7,13 +7,13 @@ public class Movement
     public static final int Y_DIRECTION_DOWN = 1;
     public static final int Y_DIRECTION_UP = -1;
 
-    private int xSpeed = 2;
-    private int ySpeed = 2;
+    private int xSpeed;
+    private int ySpeed;
 
     private int xDirection = X_DIRECTION_RIGHT;
     private int yDirection = Y_DIRECTION_DOWN;
 
-    public void setXYSpeed(int x, int y)
+    Movement(int x, int y)
     {
         this.xSpeed = x;
         this.ySpeed = y;
