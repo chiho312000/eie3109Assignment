@@ -14,6 +14,8 @@ import android.view.SurfaceView;
 
 import com.example.eie3109assignment.R;
 
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -24,7 +26,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
     private GameThread thread;
 
     private ArrayList<GraphicObject> graphics = new ArrayList<>();
-    private ArrayList<Rect> forbiddenAreas = new ArrayList<>();
 
     public Panel(Context context)
     {
@@ -99,86 +100,104 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
                 int bmpW = graphic.getGraphic().getWidth() / 2;
                 int bmpH = graphic.getGraphic().getHeight() / 2;
 
-                graphic.getCoordinates().setX(x - bmpW / 2);
-                graphic.getCoordinates().setY(y - bmpH / 2);
-
-                Rect rect = new Rect(x, y,x + bmpW * 2,y + bmpH * 2);
-                if (checkSpaceAvailable(rect))
+                graphic.getCoordinates().setX(x - bmpW);
+                graphic.getCoordinates().setY(y - bmpH);
+                graphic.setAvailableSpace(new Rect(x, y, x + bmpW * 2, y + bmpH * 2));
+                for (GraphicObject graphic2 : graphics)
                 {
-                    graphics.add(graphic);
-                    forbiddenAreas.add(rect);
+                    if (x > graphic2.getCoordinates().getX() && x < graphic2.getCoordinates().getX() + graphic2.getGraphic().getWidth()
+                        && y > graphic2.getCoordinates().getY() && y < graphic2.getCoordinates().getY() + graphic2.getGraphic().getHeight())
+                    {
+                        graphics.remove(graphic2);
+                        return true;
+                    }
                 }
+                graphics.add(graphic);
             }
             return true;
         }
     }
 
-    public boolean checkSpaceAvailable(Rect rect)
-    {
-        for (Rect test : forbiddenAreas)
-        {
-            if (rect.top == test.top && rect.bottom == test.bottom && rect.right == test.right && rect.left == test.left) continue;
-
-            if ((rect.top >= test.top && rect.top <= test.bottom && rect.left >= test.left && rect.left <= test.right)
-                || (rect.top >= test.top && rect.top <= test.bottom && rect.right >= test.left && rect.right <= test.right)
-                || (rect.bottom >= test.top && rect.bottom <= test.bottom && rect.left >= test.left && rect.left <= test.right)
-                || (rect.bottom >= test.top && rect.bottom <= test.bottom && rect.right >= test.left && rect.right <= test.right))
-            {
-                Log.v("Panel.java", String.format("rejected %d %d %d %d", rect.top, rect.right, rect.left, rect.bottom));
-                return false;
-            }
-        }
-        return true;
-    }
 
     public void updateMovement()
     {
-        Coordinates coord;
-        Movement movement;
-
-        int x, y;
-
-        for (int i = 0; i < graphics.size(); i++)
+//        updateSpaces();
+        for (GraphicObject graphic : graphics)
         {
-            GraphicObject graphic = graphics.get(i);
-
-            coord = graphic.getCoordinates();
-            movement = graphic.getMovement();
-
-            x = coord.getX() + ((movement.getXDirection() == Movement.X_DIRECTION_RIGHT) ? 1 : -1) * movement.getXSpeed();
-            //check x if reaches border
-            if (x < 0)
-            {
-                movement.toggleXDirection();
-                coord.setX(-x);
-            }
-            else if (x + graphic.getGraphic().getWidth() > getWidth())
-            {
-                movement.toggleXDirection();
-                coord.setX(x + getWidth() - (x + graphic.getGraphic().getWidth()));
-            }
-            else
-            {
-                coord.setX(x);
-            }
-
-            y = coord.getY() + ((movement.getYDirection() == Movement.Y_DIRECTION_DOWN) ? 1 : -1) * movement.getYSpeed();
-            //check y if reaches border
-            if (y < 0)
-            {
-                movement.toggleYDirection();
-                coord.setY(-y);
-            }
-            else if (y + graphic.getGraphic().getHeight() > getHeight())
-            {
-                movement.toggleYDirection();
-                coord.setY(y + getHeight() - (y + graphic.getGraphic().getHeight()));
-            }
-            else
-            {
-                coord.setY(y);
-            }
+            graphic.move();
         }
+
+    }
+
+    public void updateSpaces()
+    {
+        GraphicObject graphicObject;
+        GraphicObject graphicObject1;
+
+        boolean hasMore = graphics.size() > 1;
+        Rect rect;
+
+        int graphicHeight, graphicWidth;
+        Coordinates originalCoordinates;
+        Coordinates coordinate1;
+        int top1, left1, right1, bottom1;
+        for (int i = 0 ; i < graphics.size(); i++)
+        {
+            graphicObject = graphics.get(i);
+            rect = graphicObject.getAvailableSpace();
+            originalCoordinates = graphicObject.getCoordinates();
+            graphicHeight = graphicObject.getGraphic().getHeight();
+            graphicWidth = graphicObject.getGraphic().getWidth();
+            double movingAngle = Math.atan2((double)graphicObject.getMovement().getYSpeed() * graphicObject.getMovement().getYDirection(), (double)graphicObject.getMovement().getXSpeed() * graphicObject.getMovement().getXDirection());
+            Log.v("Panel", "moving direction: " + movingAngle);
+            if (hasMore)
+            {
+                for (int j = 0; j < graphics.size(); j++)
+                {
+                    if (i == j) continue;
+                    graphicObject1 = graphics.get(j);
+                    coordinate1 = graphicObject1.getCoordinates();
+
+                    top1 = graphicObject1.getCoordinates().getY();
+                    left1 = graphicObject1.getCoordinates().getY();
+                    right1 = graphicObject1.getCoordinates().getX() + graphicObject1.getGraphic().getWidth();
+                    bottom1 = graphicObject1.getCoordinates().getY() + graphicObject1.getGraphic().getHeight();
+
+                    if (top1 < 0) top1 = 0;
+                    if (left1 < 0) left1 = 0;
+                    if (right1 > getWidth()) right1 = getWidth();
+                    if (bottom1 > getHeight()) bottom1 = getHeight();
+
+                    double angleToObject = Math.atan2((double)originalCoordinates.getY() - coordinate1.getY(), (double)(originalCoordinates.getX() - coordinate1.getX()));
+                    Log.v("Panel", "direction towards object: " + angleToObject);
+
+                    if (Math.abs(movingAngle - angleToObject) < Math.PI / 6)
+                    {
+                        if (originalCoordinates.getX() > left1) // update left
+                        {
+                            if (left1 > rect.left && left1 > 0) rect.left = left1;
+                        }
+                        else if (originalCoordinates.getX() + graphicWidth < right1) // update right
+                        {
+                            if (right1 < rect.right && right1 > 0) rect.right = right1;
+                        }
+
+                        if (originalCoordinates.getY() > rect.top) // update top
+                        {
+                            if (top1 > rect.top && top1 > 0) rect.top = top1;
+                        }
+                        else if (originalCoordinates.getY() + graphicHeight < bottom1) // update bottom
+                        {
+                            if (bottom1 < rect.bottom && bottom1 > 0) rect.bottom = bottom1;
+                        }
+                    }
+                }
+            }
+            graphicObject.setAvailableSpace(rect);
+            Log.v("Panel", String.format("available space of object %d: top: %d, left: %d , right: %d, bottom: %d", i, rect.top, rect.left, rect.right, rect.bottom));
+        }
+
+        Log.v("Panel", "update ends");
     }
 
     @NonNull
@@ -189,5 +208,17 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bmp;
+    }
+
+    public class GraphicRect
+    {
+        private Rect rect;
+        private boolean inverted;
+
+        GraphicRect(Rect _rect, boolean _inverted)
+        {
+            rect = _rect;
+            inverted = _inverted;
+        }
     }
 }
