@@ -3,6 +3,8 @@ package com.example.eie3109assignment.models;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
+import java.util.Random;
+
 public class GraphicObject
 {
     private Bitmap bitmap;
@@ -14,7 +16,8 @@ public class GraphicObject
     {
         this.bitmap = bitmap;
         this.coordinates = new Coordinates(bitmap);
-        this.movement = new Movement((int)(Math.random() * 10), (int)(Math.random() * 10));
+        Random random = new Random();
+        this.movement = new Movement(random.nextInt(9) + 1, random.nextInt(9) + 1);
     }
 
     public void move()
