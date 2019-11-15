@@ -1,6 +1,5 @@
 package com.example.eie3109assignment;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity
 {
     private final int PART1 = 1, PART2 = 2, PART3 = 3;
-    ProgressDialog progress;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -20,7 +18,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progress = new ProgressDialog(this);
         findViewById(R.id.btnPart1).setOnClickListener(new Button.OnClickListener()
         {
             @Override
@@ -45,7 +42,6 @@ public class MainActivity extends AppCompatActivity
                 pushToPart(PART3);
             }
         });
-
     }
 
     void pushToPart(int part)
