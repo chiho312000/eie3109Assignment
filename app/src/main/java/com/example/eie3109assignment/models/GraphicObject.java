@@ -22,25 +22,26 @@ public class GraphicObject
 
     public void move()
     {
-        int x = coordinates.getX() + movement.getXDirection() * movement.getXSpeed();
-        int y = coordinates.getY() + movement.getYDirection() * movement.getYSpeed();
+        int x = getNextXCoordinate();
+        int y = getNextYCoordinate();
         int width = getGraphic().getWidth();
         int height = getGraphic().getHeight();
 
-        if (x <= availableSpace.left || x + width >= availableSpace.right)
-        {
-            movement.toggleXDirection();
-            x += 2 * movement.getXDirection() * movement.getXSpeed();
-        }
+        if (x <= availableSpace.left || x + width >= availableSpace.right) movement.toggleXDirection();
+        if (y <= availableSpace.top || y + height >= availableSpace.bottom) movement.toggleYDirection();
 
-        if (y <= availableSpace.top || y + height >= availableSpace.bottom)
-        {
-            movement.toggleYDirection();
-            y += 2 * movement.getYDirection() * movement.getYSpeed();
-        }
+        coordinates.setX(getNextXCoordinate());
+        coordinates.setY(getNextYCoordinate());
+    }
 
-        coordinates.setX(x);
-        coordinates.setY(y);
+    public int getNextXCoordinate()
+    {
+        return coordinates.getX() + movement.getXDirection() * movement.getXSpeed();
+    }
+
+    public int getNextYCoordinate()
+    {
+        return coordinates.getY() + movement.getYDirection() * movement.getYSpeed();
     }
 
     public Bitmap getGraphic()
@@ -51,11 +52,6 @@ public class GraphicObject
     public Coordinates getCoordinates()
     {
         return coordinates;
-    }
-
-    public Rect getAvailableSpace()
-    {
-        return availableSpace;
     }
 
     public Movement getMovement()

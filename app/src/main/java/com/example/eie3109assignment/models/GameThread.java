@@ -34,7 +34,7 @@ public class GameThread extends Thread
                 synchronized (surfaceHolder)
                 {
                     panel.updateMovement();
-                    panel.draw(c);
+                    if (c != null) panel.draw(c);
                 }
             }
             finally
