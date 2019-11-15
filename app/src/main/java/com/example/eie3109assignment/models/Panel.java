@@ -46,8 +46,8 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         for (GraphicObject graphic : graphics)
         {
             coords = graphic.getCoordinates();
-            x = coords.getX();
-            y = coords.getY();
+            x = coords.getLeft();
+            y = coords.getTop();
             canvas.drawBitmap(bmp, x, y, null);
         }
     }
@@ -102,16 +102,16 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
                 graphic.setAvailableSpace(new Rect(getLeft(), getTop(), getRight(), getBottom()));
                 for (GraphicObject graphic2 : graphics)
                 {
-                    if (x > graphic2.getCoordinates().getLeft() && x < graphic2.getCoordinates().getRight()
-                        && y > graphic2.getCoordinates().getTop() && y < graphic2.getCoordinates().getBottom())
+                    if (x > graphic2.getNextLeftCoordinate() && x < graphic2.getNextRightCoordinate()
+                        && y > graphic2.getNextTopCoordinate() && y < graphic2.getNextBottomCoordinate())
                     {
                         graphics.remove(graphic2);
                         return true;
                     }
                     if (checkOverlap(graphic, graphic2) != 0) return true;
                 }
-                if (graphic.getCoordinates().getLeft() >= 0 && graphic.getCoordinates().getRight() <= getRight()
-                    && graphic.getCoordinates().getTop() >= 0 && graphic.getCoordinates().getBottom() <= getBottom()) graphics.add(graphic);
+                if (graphic.getCoordinates().getLeft() >= getLeft() && graphic.getCoordinates().getRight() <= getRight()
+                    && graphic.getCoordinates().getTop() >= getTop() && graphic.getCoordinates().getBottom() <= getBottom()) graphics.add(graphic);
             }
             return true;
         }
@@ -129,26 +129,26 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
 
     public int checkOverlap(GraphicObject original, GraphicObject test)
     {
-        int Ox = original.getNextXCoordinate();
-        int Oy = original.getNextYCoordinate();
-        int Ow = original.getGraphic().getWidth();
-        int Oh = original.getGraphic().getHeight();
+        int Ol = original.getNextLeftCoordinate();
+        int Ot = original.getNextTopCoordinate();
+        int Or = original.getNextRightCoordinate();
+        int Ob = original.getNextBottomCoordinate();
 
-        int Tx = test.getNextXCoordinate();
-        int Ty = test.getNextYCoordinate();
-        int Tw = test.getGraphic().getWidth();
-        int Th = test.getGraphic().getHeight();
+        int Tl = test.getNextLeftCoordinate();
+        int Tt = test.getNextTopCoordinate();
+        int Tr = test.getNextRightCoordinate();
+        int Tb = test.getNextBottomCoordinate();
 
-        if (Ox > Tx && Ox < Tx + Tw)
+        if (Ol > Tl && Ol < Tr)
         {
-            if (Oy > Ty && Oy < Ty + Th) return 1;
-            if (Oy + Oh > Ty && Oy + Oh < Th) return 3;
+            if (Ot > Tt && Ot < Tb) return 1;
+            if (Ob > Tt &&  Ob < Tb) return 3;
         }
 
-        if (Ox + Ow > Tx && Ox + Ow < Tx + Tw)
+        if (Or > Tl && Or < Tr)
         {
-            if (Oy > Ty && Oy < Ty + Th) return 2;
-            if (Oy + Oh > Ty && Oy + Oh < Oy + Th) return 4;
+            if (Ot > Tt && Ot < Tb) return 2;
+            if (Ob > Tt && Ob < Tb) return 4;
         }
 
         return 0;
@@ -172,10 +172,9 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
                     graphicObject1 = graphics.get(j);
                     if (checkOverlap(graphicObject, graphicObject1) > 0)
                     {
+                        graphicObject1.getMovement().setDirections(graphicObject.getMovement().getXDirection(), graphicObject.getMovement().getYDirection());
                         graphicObject.getMovement().toggleXDirection();
                         graphicObject.getMovement().toggleYDirection();
-                        graphicObject1.getMovement().toggleXDirection();
-                        graphicObject1.getMovement().toggleYDirection();
                     }
                 }
             }

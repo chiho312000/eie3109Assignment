@@ -22,13 +22,13 @@ public class GraphicObject
 
     public void move()
     {
-        int x = getNextXCoordinate();
-        int y = getNextYCoordinate();
-        int width = getGraphic().getWidth();
-        int height = getGraphic().getHeight();
+        int left = getNextLeftCoordinate();
+        int top = getNextTopCoordinate();
+        int right = getNextRightCoordinate();
+        int bottom = getNextBottomCoordinate();
 
-        if (x <= availableSpace.left || x + width >= availableSpace.right) movement.toggleXDirection();
-        if (y <= availableSpace.top || y + height >= availableSpace.bottom) movement.toggleYDirection();
+        if (left <= availableSpace.left || right >= availableSpace.right) movement.toggleXDirection();
+        if (top <= availableSpace.top || bottom >= availableSpace.bottom) movement.toggleYDirection();
 
         coordinates.setX(getNextXCoordinate());
         coordinates.setY(getNextYCoordinate());
@@ -42,6 +42,26 @@ public class GraphicObject
     public int getNextYCoordinate()
     {
         return coordinates.getY() + movement.getYDirection() * movement.getYSpeed();
+    }
+
+    public int getNextLeftCoordinate()
+    {
+        return coordinates.getLeft() + movement.getXDirection() * movement.getXSpeed();
+    }
+
+    public int getNextRightCoordinate()
+    {
+        return coordinates.getRight() + movement.getXDirection() * movement.getXSpeed();
+    }
+
+    public int getNextTopCoordinate()
+    {
+        return coordinates.getTop() + movement.getYDirection() * movement.getYSpeed();
+    }
+
+    public int getNextBottomCoordinate()
+    {
+        return coordinates.getBottom() + movement.getYDirection() * movement.getYSpeed();
     }
 
     public Bitmap getGraphic()

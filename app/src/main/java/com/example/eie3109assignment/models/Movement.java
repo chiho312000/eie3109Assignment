@@ -10,13 +10,15 @@ public class Movement
     private int xSpeed;
     private int ySpeed;
 
-    private int xDirection = X_DIRECTION_RIGHT;
-    private int yDirection = Y_DIRECTION_DOWN;
+    private int xDirection;
+    private int yDirection;
 
     Movement(int x, int y)
     {
         this.xSpeed = x;
         this.ySpeed = y;
+        xDirection = Math.random() > 0.5 ? X_DIRECTION_LEFT : X_DIRECTION_RIGHT;
+        yDirection = Math.random() > 0.5 ? Y_DIRECTION_UP : Y_DIRECTION_DOWN;
     }
 
     public void setDirections(int xDirection, int yDirection)
