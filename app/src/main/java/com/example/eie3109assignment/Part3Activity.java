@@ -12,6 +12,7 @@ public class Part3Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(new Panel(this));
+        Panel panel = new Panel(this);
+        setContentView(panel);
     }
 }

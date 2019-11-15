@@ -14,9 +14,8 @@ import android.view.SurfaceView;
 
 import com.example.eie3109assignment.R;
 
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
-
 import java.util.ArrayList;
+import java.util.Collections;
 
 import androidx.annotation.NonNull;
 
@@ -24,7 +23,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
 {
     private Bitmap bmp;
     private GameThread thread;
-
     private ArrayList<GraphicObject> graphics = new ArrayList<>();
 
     public Panel(Context context)
@@ -47,8 +45,8 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         for (GraphicObject graphic : graphics)
         {
             coords = graphic.getCoordinates();
-            x = coords.getX();
-            y = coords.getY();
+            x = coords.getLeft();
+            y = coords.getTop();
             canvas.drawBitmap(bmp, x, y, null);
         }
     }
@@ -97,56 +95,88 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
 
                 GraphicObject graphic = new GraphicObject(bmp);
 
-                int bmpW = graphic.getGraphic().getWidth() / 2;
-                int bmpH = graphic.getGraphic().getHeight() / 2;
-
-                graphic.getCoordinates().setX(x - bmpW);
-                graphic.getCoordinates().setY(y - bmpH);
+                graphic.getCoordinates().setX(x);
+                graphic.getCoordinates().setY(y);
 
                 graphic.setAvailableSpace(new Rect(getLeft(), getTop(), getRight(), getBottom()));
                 for (GraphicObject graphic2 : graphics)
                 {
-                    if (x > graphic2.getCoordinates().getX() && x < graphic2.getCoordinates().getX() + graphic2.getGraphic().getWidth()
-                        && y > graphic2.getCoordinates().getY() && y < graphic2.getCoordinates().getY() + graphic2.getGraphic().getHeight())
+                    if (x > graphic2.getNextLeftCoordinate() && x < graphic2.getNextRightCoordinate()
+                        && y > graphic2.getNextTopCoordinate() && y < graphic2.getNextBottomCoordinate())
                     {
                         graphics.remove(graphic2);
                         return true;
                     }
+                    if (checkOverlap(graphic, graphic2) != 0) return true;
                 }
-                graphics.add(graphic);
+                if (graphic.getCoordinates().getLeft() >= getLeft() && graphic.getCoordinates().getRight() <= getRight()
+                    && graphic.getCoordinates().getTop() >= getTop() && graphic.getCoordinates().getBottom() <= getBottom()) graphics.add(graphic);
             }
             return true;
         }
     }
 
-    public boolean checkSpaceAvailable(Rect rect)
-    {
-        int testTop, testLeft, testRight, testBottom;
-        for (GraphicObject graphic : graphics)
-        {
-            testTop = graphic.getCoordinates().getY();
-            testLeft = graphic.getCoordinates().getX();
-            testRight = testLeft + graphic.getGraphic().getWidth();
-            testBottom = testTop + graphic.getGraphic().getHeight();
-
-            if ((rect.top >= testTop && rect.top <= testBottom && rect.left >= testLeft && rect.left <= testRight)
-                    || (rect.top >= testTop && rect.top <= testBottom && rect.right >= testLeft && rect.right <= testRight)
-                    || (rect.bottom >= testTop && rect.bottom <= testBottom && rect.left >= testLeft && rect.left <= testRight)
-                    || (rect.bottom >= testTop && rect.bottom <= testBottom && rect.right >= testLeft && rect.right <= testRight))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public void updateMovement()
     {
+        updateDirection();
         for (GraphicObject graphic : graphics)
         {
             graphic.move();
         }
+        Collections.shuffle(graphics);
+    }
 
+    public int checkOverlap(GraphicObject original, GraphicObject test)
+    {
+        int Ol = original.getNextLeftCoordinate();
+        int Ot = original.getNextTopCoordinate();
+        int Or = original.getNextRightCoordinate();
+        int Ob = original.getNextBottomCoordinate();
+
+        int Tl = test.getNextLeftCoordinate();
+        int Tt = test.getNextTopCoordinate();
+        int Tr = test.getNextRightCoordinate();
+        int Tb = test.getNextBottomCoordinate();
+
+        if (Ol > Tl && Ol < Tr)
+        {
+            if (Ot > Tt && Ot < Tb) return 1;
+            if (Ob > Tt &&  Ob < Tb) return 3;
+        }
+
+        if (Or > Tl && Or < Tr)
+        {
+            if (Ot > Tt && Ot < Tb) return 2;
+            if (Ob > Tt && Ob < Tb) return 4;
+        }
+        return 0;
+    }
+
+    public void updateDirection()
+    {
+        GraphicObject graphicObject;
+        GraphicObject graphicObject1;
+
+        boolean hasMore = graphics.size() > 1;
+
+        for (int i = 0 ; i < graphics.size(); i++)
+        {
+            graphicObject = graphics.get(i);
+            if (hasMore)
+            {
+                for (int j = 0; j < graphics.size(); j++)
+                {
+                    if (i == j) continue;
+                    graphicObject1 = graphics.get(j);
+                    if (checkOverlap(graphicObject, graphicObject1) > 0)
+                    {
+                        graphicObject1.getMovement().setDirections(graphicObject.getMovement().getXDirection(), graphicObject.getMovement().getYDirection());
+                        graphicObject.getMovement().toggleXDirection();
+                        graphicObject.getMovement().toggleYDirection();
+                    }
+                }
+            }
+        }
     }
 
     @NonNull
@@ -157,17 +187,5 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bmp;
-    }
-
-    public class GraphicRect
-    {
-        private Rect rect;
-        private boolean inverted;
-
-        GraphicRect(Rect _rect, boolean _inverted)
-        {
-            rect = _rect;
-            inverted = _inverted;
-        }
     }
 }

@@ -30,7 +30,8 @@ public class CalculatorBrain
         return needUpdateMonitor;
     }
 
-    private final HashMap<String, Function<ArrayList<Double>, Double>> availableOperations = new HashMap<String, Function<ArrayList<Double>, Double>>() {{
+    private final HashMap<String, Function<ArrayList<Double>, Double>> availableOperations = new HashMap<String, Function<ArrayList<Double>, Double>>()
+    {{
         put("+", new Function<ArrayList<Double>, Double>()
         {
             @Override
