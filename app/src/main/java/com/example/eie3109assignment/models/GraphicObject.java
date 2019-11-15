@@ -7,14 +7,12 @@ import java.util.Random;
 
 public class GraphicObject
 {
-    private Bitmap bitmap;
     private Coordinates coordinates;
     private Movement movement;
     private Rect availableSpace;
 
     public GraphicObject(Bitmap bitmap)
     {
-        this.bitmap = bitmap;
         this.coordinates = new Coordinates(bitmap);
         Random random = new Random();
         this.movement = new Movement(random.nextInt(9) + 1, random.nextInt(9) + 1);
@@ -62,11 +60,6 @@ public class GraphicObject
     public int getNextBottomCoordinate()
     {
         return coordinates.getBottom() + movement.getYDirection() * movement.getYSpeed();
-    }
-
-    public Bitmap getGraphic()
-    {
-        return bitmap;
     }
 
     public Coordinates getCoordinates()

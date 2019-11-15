@@ -23,7 +23,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
 {
     private Bitmap bmp;
     private GameThread thread;
-
     private ArrayList<GraphicObject> graphics = new ArrayList<>();
 
     public Panel(Context context)
@@ -150,7 +149,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
             if (Ot > Tt && Ot < Tb) return 2;
             if (Ob > Tt && Ob < Tb) return 4;
         }
-
         return 0;
     }
 
@@ -189,10 +187,5 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bmp;
-    }
-
-    public GameThread getThread()
-    {
-        return thread;
     }
 }
