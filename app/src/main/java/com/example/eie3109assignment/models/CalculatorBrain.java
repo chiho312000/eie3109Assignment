@@ -111,8 +111,11 @@ public class CalculatorBrain
 
     private void performPendingBinaryOperation()
     {
-        accumulator = pendingBinaryOperation.performOperation(accumulator);
-        pendingBinaryOperation = null;
+        if (pendingBinaryOperation != null)
+        {
+            accumulator = pendingBinaryOperation.performOperation(accumulator);
+            pendingBinaryOperation = null;
+        }
     }
 
     public class BinaryOperation
