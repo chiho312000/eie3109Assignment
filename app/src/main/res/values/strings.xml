@@ -34,6 +34,7 @@
     <string name="part2BtnDivideText">/</string>
     <string name="part2BtnSinText">sin</string>
     <string name="part2BtnCosText">cos</string>
+    <string name="part2BtnCText">c</string>
 
     <!-- Part3 -->
 </resources>

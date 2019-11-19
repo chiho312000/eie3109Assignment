@@ -218,6 +218,16 @@
         android:text="@string/part2BtnCosText" />
 
     <Button
+        android:id="@+id/part2BtnC"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/part2Btn9"
+        app:layout_constraintEnd_toEndOf="@id/part2Btn9"
+        app:layout_constraintTop_toTopOf="@id/part2BtnSin"
+        app:layout_constraintBottom_toBottomOf="@id/part2BtnSin"
+        android:text="@string/part2BtnCText" />
+
+    <Button
         android:id="@+id/part2BtnBack"
         android:layout_width="0dp"
         android:layout_height="0dp"

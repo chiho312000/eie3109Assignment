@@ -73,6 +73,20 @@ public class Part2Activity extends AppCompatActivity
                 }
             });
         }
+
+        Button clearBtn = findViewById(R.id.part2BtnC);
+        if (clearBtn != null)
+        {
+            clearBtn.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    calculatorBrain = new CalculatorBrain();
+                    monitor.setText(hashes.format(calculatorBrain.getResult()));
+                }
+            });
+        }
     }
 
     public class NumbersBtnOnClickHandler implements Button.OnClickListener
