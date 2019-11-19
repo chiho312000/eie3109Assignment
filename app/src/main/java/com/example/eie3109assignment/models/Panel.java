@@ -162,9 +162,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         int Ty = test.getNextYCoordinate();
         float Tr = test.getCoordinates().getWidth() / 2;
 
-        if (Math.sqrt(Math.pow(Ox - Tx, 2) + Math.pow(Oy - Ty, 2)) <= Or + Tr) return true;
-
-        return false;
+        return Math.sqrt(Math.pow(Ox - Tx, 2) + Math.pow(Oy - Ty, 2)) <= Or + Tr;
     }
 
     public void updateDirection()
