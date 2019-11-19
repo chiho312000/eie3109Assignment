@@ -107,7 +107,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
                         graphics.remove(graphic2);
                         return true;
                     }
-                    if (checkOverlap(graphic, graphic2) != 0) return true;
+                    if (checkOverlap(graphic, graphic2)) return true;
                 }
                 if (graphic.getCoordinates().getLeft() >= getLeft() && graphic.getCoordinates().getRight() <= getRight()
                     && graphic.getCoordinates().getTop() >= getTop() && graphic.getCoordinates().getBottom() <= getBottom()) graphics.add(graphic);
@@ -126,9 +126,8 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         Collections.shuffle(graphics);
     }
 
-    public int checkOverlap(GraphicObject original, GraphicObject test)
+    public boolean checkOverlap(GraphicObject original, GraphicObject test)
     {
-
         /*
         // for square object
         int Ol = original.getNextLeftCoordinate();
@@ -163,10 +162,9 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
         int Ty = test.getNextYCoordinate();
         float Tr = test.getCoordinates().getWidth() / 2;
 
-        if (Math.sqrt(Math.pow(Ox - Tx, 2) + Math.pow(Oy - Ty, 2)) <= Or + Tr) return 1;
+        if (Math.sqrt(Math.pow(Ox - Tx, 2) + Math.pow(Oy - Ty, 2)) <= Or + Tr) return true;
 
-
-        return 0;
+        return false;
     }
 
     public void updateDirection()
@@ -185,7 +183,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
                 {
                     if (i == j) continue;
                     graphicObject1 = graphics.get(j);
-                    if (checkOverlap(graphicObject, graphicObject1) > 0)
+                    if (checkOverlap(graphicObject, graphicObject1))
                     {
                         graphicObject1.getMovement().setDirections(graphicObject.getMovement().getXDirection(), graphicObject.getMovement().getYDirection());
                         graphicObject.getMovement().toggleXDirection();
