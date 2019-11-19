@@ -128,6 +128,9 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
 
     public int checkOverlap(GraphicObject original, GraphicObject test)
     {
+
+        /*
+        // for square object
         int Ol = original.getNextLeftCoordinate();
         int Ot = original.getNextTopCoordinate();
         int Or = original.getNextRightCoordinate();
@@ -149,6 +152,20 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback
             if (Ot > Tt && Ot < Tb) return 2;
             if (Ob > Tt && Ob < Tb) return 4;
         }
+        */
+
+        // for circle object
+        int Ox = original.getNextXCoordinate();
+        int Oy = original.getNextYCoordinate();
+        float Or = original.getCoordinates().getWidth() / 2;
+
+        int Tx = test.getNextXCoordinate();
+        int Ty = test.getNextYCoordinate();
+        float Tr = test.getCoordinates().getWidth() / 2;
+
+        if (Math.sqrt(Math.pow(Ox - Tx, 2) + Math.pow(Oy - Ty, 2)) <= Or + Tr) return 1;
+
+
         return 0;
     }
 

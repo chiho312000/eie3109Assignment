@@ -22,6 +22,16 @@ public class Coordinates
         return x + bitmap.getWidth() / 2;
     }
 
+    public int getHeight()
+    {
+        return bitmap.getHeight();
+    }
+
+    public int getWidth()
+    {
+        return bitmap.getWidth();
+    }
+
     public void setY(int y)
     {
          this.y = y - bitmap.getHeight() / 2;
